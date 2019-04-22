@@ -57,7 +57,7 @@ static void help(const char *restrict cmdName)
     printf("    -i --inputdir <value>               input dir\n");
     printf("    -e --exportdir <value>              export dir\n");
     printf("    -f --faildir <value>                verification fail dir\n");
-    printf("    -t --delaytime <time>               time str descrption 1s,1m,1h,1d...\n");
+    printf("    -t --delaytime <time>               time str descrption 1S,1s,1m,1h,1d...\n");
     printf("    -l --loglevel <value>               log level,0:TRACE, 1:DEBUG, 2:INFO, 3:WARN, 4:ERROR, 5:FATAL\n");
     printf("    -h --help                           help\n");
 }
@@ -73,6 +73,9 @@ static void calculationDelayTime(const char *delayTimeStr)
     time[length - 1] = '\0';
 
     switch (timeUnit) {
+    case 'S':
+        delaytime = atoi(time);
+        break;
     case 's':
         delaytime = atoi(time) * 1000;
         break;
